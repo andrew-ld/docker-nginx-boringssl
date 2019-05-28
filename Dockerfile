@@ -40,7 +40,7 @@ ENV CONFIG="\
     --with-openssl-opt=enable-tls1_3 \
 "
 
-RUN apk add --no-cache build-base cmake git go perl zlib-dev linux-headers pcre-dev gd-dev libc-dev
+RUN apk add --no-cache build-base cmake git go perl zlib-dev linux-headers pcre-dev libc-dev
 RUN git clone --depth 1 https://boringssl.googlesource.com/boringssl /usr/src/boringssl
 RUN git clone --depth 1 https://github.com/nginx/nginx /usr/src/nginx
 
@@ -66,9 +66,7 @@ RUN cd /usr/src/nginx && \
 FROM alpine:latest
 RUN apk add --no-cache zlib pcre
 COPY --from=builder "/usr/sbin/nginx" "/usr/sbin/nginx"
-
-RUN addgroup -S nginx && \
-         adduser nginx -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx
+RUN adduser nginx -D -S -h /var/cache/nginx -s /sbin/nologin
 
 EXPOSE 80 443
 STOPSIGNAL SIGTERM
