@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  nginx:
+    container_name: nginx
+    build: .
+    restart: unless-stopped
+
+    volumes:
+       - './data/etc_nginx/:/etc/nginx/'
+       - './data/var_www/:/var/www/'
+       - './data/var_log/:/var/log/nginx/'
+
+    ports:
+       - '80:80'
+       - '443:443'
