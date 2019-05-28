@@ -37,6 +37,7 @@ ENV CONFIG="\
     --with-http_v2_module \
     --with-openssl=/usr/src/boringssl \
     --with-cc-opt=-I'/usr/src/boringssl/.openssl/include/' \
+    --with-openssl-opt=enable-tls1_3 \
 "
 
 RUN apk add --no-cache build-base cmake git go perl zlib-dev linux-headers pcre-dev gd-dev libc-dev
