@@ -62,7 +62,6 @@ RUN cd /usr/src/nginx && \
          make -j$(nproc) && \
          make install
 
-
 FROM alpine:latest
 RUN apk add --no-cache zlib pcre
 COPY --from=builder "/usr/sbin/nginx" "/usr/sbin/nginx"
