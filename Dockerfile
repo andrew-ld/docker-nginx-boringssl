@@ -48,7 +48,7 @@ RUN cd /usr/src/boringssl && \
          mkdir build && \
          cd build && \
          cmake DCMAKE_BUILD_TYPE=Release ../ && \
-         make -j$(nproc) && \
+         make ssl -j$(nproc) && \
          mkdir -p ../.openssl/lib && \
          cd ../.openssl/ && \
          ln -s ../include && \
