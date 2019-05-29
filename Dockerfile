@@ -65,7 +65,7 @@ RUN cd /usr/src/nginx && \
 FROM alpine:latest
 RUN apk add --no-cache zlib pcre
 COPY --from=builder "/usr/sbin/nginx" "/usr/sbin/nginx"
-RUN adduser nginx -D -S -h /var/cache/nginx -s /sbin/nologin
+RUN adduser nginx -h /var/cache/nginx -s /bin/false -D
 
 EXPOSE 80 443
 STOPSIGNAL SIGTERM
