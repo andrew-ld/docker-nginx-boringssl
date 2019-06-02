@@ -43,8 +43,10 @@ ENV CONFIG="\
 RUN apk add --no-cache build-base cmake git go perl zlib-dev linux-headers pcre-dev libc-dev
 RUN git clone --depth 1 https://boringssl.googlesource.com/boringssl /usr/src/boringssl
 RUN git clone --depth 1 https://github.com/nginx/nginx /usr/src/nginx
+COPY ./patches /patches
 
 RUN cd /usr/src/boringssl && \
+         git apply < /patches/disable_aes128.patch && \
          mkdir build && \
          cd build && \
          cmake DCMAKE_BUILD_TYPE=Release ../ && \
